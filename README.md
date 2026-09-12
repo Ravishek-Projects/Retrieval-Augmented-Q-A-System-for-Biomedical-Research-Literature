@@ -1,12 +1,10 @@
 # 🏥 Medical Literature RAG System
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://medical-literature-rag.streamlit.app/)
+**[🚀 Live at Streamlit](https://medical-literature-rag.streamlit.app/)**
 
 **Author:** Ravishek Kumar
 
 A Retrieval-Augmented Generation (RAG) system built to answer complex medical and biomedical questions. The system grounds its answers in a curated dataset of over **100,000 arXiv medical research papers**, ensuring highly factual, hallucination-free responses with exact source citations.
-
-🔗 **[Live Demo](https://medical-literature-rag.streamlit.app/)**
 
 ---
 
@@ -93,3 +91,25 @@ If you want to run this project locally on your machine:
    ```bash
    streamlit run app.py
    ```
+
+---
+
+## 📁 Project Structure
+
+```text
+├── index/
+│   ├── chunks_metadata.parquet    # Indexed paper metadata (titles, urls, categories)
+│   └── faiss_index.bin            # Pre-computed FAISS vector index (100,000 vectors)
+├── app.py                         # Main Streamlit application and RAG pipeline UI
+├── RAG_notebook.ipynb             # Full development pipeline (Data to Evaluation)
+├── requirements.txt               # Project dependencies
+└── README.md                      # Project documentation
+```
+
+### Development Pipeline (`RAG_notebook.ipynb`)
+The entire system was developed sequentially in a single comprehensive notebook, divided into five phases:
+* **Phase 1: Data Pipeline** — Fetched Kaggle arXiv dataset, filtered for 340k medical papers.
+* **Phase 2: Embedding & Indexing** — Generated MiniLM embeddings and built the FAISS index.
+* **Phase 3: RAG Pipeline** — Developed the two-stage retrieval and Groq generation pipeline.
+* **Phase 4: Evaluation** — Handled auto-eval set generation, BERTScore, and ablation testing.
+* **Phase 5: UI & Deployment** — Built the Streamlit application structure.
